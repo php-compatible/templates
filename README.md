@@ -1,6 +1,26 @@
 # templates
 
-Modern PHP-style templating that works on PHP 5.5+.
+[![CI](https://github.com/php-compatible/templates/actions/workflows/ci.yml/badge.svg)](https://github.com/php-compatible/templates/actions/workflows/ci.yml)
+[![Latest Stable Version](https://poser.pugx.org/php-compatible/templates/v/stable)](https://packagist.org/packages/php-compatible/templates)
+[![Total Downloads](https://poser.pugx.org/php-compatible/templates/downloads)](https://packagist.org/packages/php-compatible/templates)
+[![License](https://poser.pugx.org/php-compatible/templates/license)](https://packagist.org/packages/php-compatible/templates)
+[![PHP Version](https://img.shields.io/packagist/php-v/php-compatible/templates)](https://packagist.org/packages/php-compatible/templates)
+
+**Blazing fast PHP templating with zero dependencies.**
+
+A lightweight, high-performance template engine that leverages PHP's native output buffering for maximum speed. No parsing overhead, no compilation step, no caching layer needed - just pure PHP execution at full speed.
+
+## Why templates?
+
+- **Zero overhead** - Uses PHP's native `require` and output buffering. No regex parsing, no AST compilation, no runtime interpretation.
+- **Instant rendering** - Templates execute as native PHP code. What you write is what runs.
+- **No dependencies** - A single function. No framework required. No external libraries.
+- **Legacy compatible** - Works on PHP 5.5 through 8.x. Modernize your legacy codebase without breaking compatibility.
+- **Familiar syntax** - It's just PHP. No new template language to learn.
+
+## Documentation
+
+Full documentation available at **[phpcompatible.dev/docs/category/templates](https://phpcompatible.dev/docs/category/templates)**
 
 ## Installation
 
@@ -8,9 +28,7 @@ Modern PHP-style templating that works on PHP 5.5+.
 composer require php-compatible/templates
 ```
 
-## Usage
-
-### Basic Example
+## Quick Start
 
 Create a template file `views/hello.php`:
 
@@ -19,7 +37,7 @@ Create a template file `views/hello.php`:
 <p><?php echo $message; ?></p>
 ```
 
-Render the template:
+Render it:
 
 ```php
 <?php
@@ -33,19 +51,18 @@ $html = template('views/hello.php', array(
 echo $html;
 ```
 
-### Using Loops
+## Examples
 
-Template file `views/list.php`:
+### Loops
 
 ```php
+<!-- views/list.php -->
 <ul>
 <?php foreach ($items as $item): ?>
     <li><?php echo $item; ?></li>
 <?php endforeach; ?>
 </ul>
 ```
-
-Render:
 
 ```php
 $html = template('views/list.php', array(
@@ -55,16 +72,13 @@ $html = template('views/list.php', array(
 
 ### Nested Data
 
-Template file `views/user.php`:
-
 ```php
+<!-- views/user.php -->
 <div class="user-card">
     <h2><?php echo $user['name']; ?></h2>
     <p><?php echo $user['email']; ?></p>
 </div>
 ```
-
-Render:
 
 ```php
 $html = template('views/user.php', array(
@@ -77,7 +91,7 @@ $html = template('views/user.php', array(
 
 ### HTML Escaping
 
-The `template()` function does not automatically escape output. For security, use `htmlspecialchars()` in your templates:
+The `template()` function does not automatically escape output. For security, use `htmlspecialchars()`:
 
 ```php
 <h1><?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?></h1>
@@ -87,39 +101,18 @@ The `template()` function does not automatically escape output. For security, us
 
 ### `template($path, $variables)`
 
-Parses a PHP template file and returns the rendered output as a string.
+Renders a PHP template file and returns the output as a string.
 
-**Parameters:**
-- `$path` (string) - Path to the template file
-- `$variables` (array) - Associative array of variables to make available in the template
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$path` | string | Path to the template file |
+| `$variables` | array | Associative array of variables available in the template |
 
-**Returns:** string - The rendered template output
+**Returns:** `string` - The rendered template output
 
 ## Requirements
 
 - PHP 5.5 or higher
-
-## Development
-
-### Running Tests
-
-```bash
-composer install
-composer test
-```
-
-### Running Tests with Docker
-
-```bash
-docker-compose run php-cli composer install
-docker-compose run php-cli composer test
-```
-
-### Code Coverage
-
-```bash
-composer coverage
-```
 
 ## License
 
