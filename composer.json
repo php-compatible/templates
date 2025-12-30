@@ -1,0 +1,29 @@
+{
+  "name": "php-compatible/templates",
+  "description": "Modern PHP-style templating that works on PHP 5.5+",
+  "type": "library",
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=5.5"
+  },
+  "autoload": {
+    "files": [
+      "src/template.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "PhpCompatible\\Templates\\Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.0 || ^10.0 || ^11.0"
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "test-debug": "vendor/bin/phpunit --debug",
+    "coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text",
+    "coverage-html": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html coverage"
+  }
+}
